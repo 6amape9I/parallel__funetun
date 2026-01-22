@@ -1,0 +1,80 @@
+version: "3.8"
+services:
+  # Ethereum node (geth) – уже настроен в geth.yml, поэтому используйте свой вариант
+  geth:
+    container_name: geth
+    image: ethereum/client-go:stable
+    command: >
+      --datadir /data
+      --http --http.addr 0.0.0.0 --http.port 8545 --http.api eth,net,web3
+      --http.corsdomain "*" --http.vhosts "*"
+      --ws --ws.addr 0.0.0.0 --ws.port 8546 --ws.api eth,net,web3
+      --authrpc.addr 0.0.0.0 --authrpc.port 8551 --authrpc.vhosts "*"
+      --authrpc.jwtsecret /jwt/jwtsecret.txt
+    volumes:
+      - ${HOME}/.parallel_chain/geth:/data
+      - ./jwt:/jwt
+    ports:
+      - "8545:8545"   # HTTP‑RPC
+      - "8546:8546"   # WebSocket RPC
+      - "8551:8551"   # Auth‑RPC (JWT)
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--spider", "http://localhost:8545"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - chain
+
+  # Postgres для Blockscout
+  blockscout_db:
+    image: postgres:15-alpine
+    container_name: blockscout_db
+    environment:
+      POSTGRES_USER: blockscout
+      POSTGRES_PASSWORD: blockscout123
+      POSTGRES_DB: blockscout
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U blockscout"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - chain
+
+  # Redis – кеш и фоновые задачи
+  blockscout_redis:
+    image: redis:7-alpine
+    container_name: blockscout_redis
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - chain
+
+  # Blockscout
+  blockscout_app:
+    image: blockscout/blockscout:latest
+    command: sh -lc "bin/blockscout eval \"Elixir.Explorer.ReleaseTasks.create_and_migrate()\" && bin/blockscout start"
+    container_name: blockscout_app
+    depends_on:
+      blockscout_db:
+        condition: service_healthy
+      blockscout_redis:
+        condition: service_healthy
+      geth:
+        condition: service_healthy
+    env_file:
+      - .env
+    ports:
+      - "4000:4000"  # веб‑интерфейс
+    networks:
+      - chain
+
+networks:
+  chain:
+    driver: bridge
