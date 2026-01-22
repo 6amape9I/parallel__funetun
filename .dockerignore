@@ -1,0 +1,14 @@
+.git
+.idea
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.venv
+.env
+node_modules
+docs
+test
+data
+artifacts
+frontend/node_modules

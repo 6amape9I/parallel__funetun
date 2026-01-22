@@ -1,0 +1,90 @@
+version: "3.8"
+
+services:
+  geth:
+    image: ethereum/client-go:stable
+    container_name: parallel_geth
+    command: >
+      --datadir /data
+      --http --http.addr 0.0.0.0 --http.port 8545 --http.api eth,net,web3
+      --http.corsdomain "*" --http.vhosts "*"
+      --ws --ws.addr 0.0.0.0 --ws.port 8546 --ws.api eth,net,web3
+    volumes:
+      - geth-data:/data
+    ports:
+      - "8545:8545"
+      - "8546:8546"
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--spider", "http://localhost:8545"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  orchestrator:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.orchestrator
+    container_name: parallel_orchestrator
+    environment:
+      WEB3_PROVIDER_URL: http://geth:8545
+      JOB_MANAGER_ADDRESS: 0x5fbdb2315678afecb367f032d93f642f64180aa3
+    volumes:
+      - ./artifacts:/app/artifacts
+    ports:
+      - "8000:8000"
+    depends_on:
+      geth:
+        condition: service_healthy
+    command: >
+      uvicorn orchestrator.orchestrator:app
+      --host 0.0.0.0 --port 8000
+
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.frontend
+    container_name: parallel_frontend
+    depends_on:
+      orchestrator:
+        condition: service_started
+    ports:
+      - "8080:80"
+
+  trainer:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.trainer
+    container_name: parallel_trainer
+    profiles: ["workers"]
+    environment:
+      REGISTRY_URL: http://orchestrator:8000
+      JOB_ID: "0"
+      TRAINER_ADDRESS: 0x70997970C51812dc3A010C7d01b50e0d17dc79C8
+    depends_on:
+      orchestrator:
+        condition: service_started
+    command: >
+      --registry $REGISTRY_URL
+      --job $JOB_ID
+      --trainer $TRAINER_ADDRESS
+
+  validator:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.validator
+    container_name: parallel_validator
+    profiles: ["workers"]
+    environment:
+      REGISTRY_URL: http://orchestrator:8000
+      JOB_ID: "0"
+      VALIDATOR_ADDRESS: 0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC
+    depends_on:
+      orchestrator:
+        condition: service_started
+    command: >
+      --registry $REGISTRY_URL
+      --job $JOB_ID
+      --validator $VALIDATOR_ADDRESS
+
+volumes:
+  geth-data:

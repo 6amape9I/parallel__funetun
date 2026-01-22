@@ -18,6 +18,19 @@ def main():
 
     # Отправляем транзакцию validateUpdate в контракт
     # В этом примере отправка в контракт не реализована: требуется подключение к узлу и подпись транзакции
+    try:
+        requests.post(
+            f"{args.registry}/submit_validation",
+            json={
+                "validator": args.validator,
+                "job_id": job_id,
+                "index": index,
+                "valid": valid,
+            },
+            timeout=3,
+        )
+    except requests.RequestException:
+        pass
     print(f"Validated update {index} for job {job_id}: {valid}")
 
 if __name__ == "__main__":
