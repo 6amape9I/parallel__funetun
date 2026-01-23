@@ -1,468 +1,480 @@
 <!doctype html>
 <html lang="ru">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Parallel Funetun | Распределенное обучение и блокчейн</title>
-    <meta
-            name="description"
-            content="Parallel Funetun — прототип маркетплейса распределенного обучения с on-chain учетом и off-chain вычислениями."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link
-            href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Space+Grotesk:wght@400;500;600&display=swap"
-            rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css"/>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Parallel Funetun | Distributed Training & Blockchain</title>
+  <meta name="description" content="Decentralized GPU marketplace for distributed model training with on-chain accountability and off-chain computation."/>
+  <meta name="theme-color" content="#0a0a0f"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
 </head>
 <body id="top">
 <div class="page">
-    <header class="topbar">
-        <div class="brand">
-            <span class="brand-mark">PF</span>
-            <span>Parallel Funetun</span>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">PF</span>
+      <span>Parallel Funetun</span>
+    </div>
+    <nav class="nav">
+      <a href="#live">Live Data</a>
+      <a href="#graph">Graph</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#flow">Flow</a>
+      <a href="#stack">Stack</a>
+      <a href="whitepaper.html">Whitepaper</a>
+    </nav>
+    <div class="theme-toggle">
+      <button class="theme-btn" id="theme-toggle" aria-label="Toggle theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+      </button>
+      <a class="btn ghost" href="#demo">Get Started</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content reveal">
+        <span class="eyebrow">Distributed Training & Blockchain</span>
+        <h1>Train models on open GPUs with on-chain payments.</h1>
+        <p class="lead">
+          Parallel Funetun is a marketplace prototype where clients fund training,
+          GPU owners execute micro-tasks, and validators verify updates. Smart contracts
+          keep payments honest while computation stays off-chain.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#flow">View Workflow</a>
+          <a class="btn outline" href="whitepaper.html">📄 Read Whitepaper</a>
         </div>
-        <nav class="nav">
-          <a href="#live">Живые данные</a>
-          <a href="#graph">Граф</a>
-          <a href="#architecture">Архитектура</a>
-            <a href="#flow">Поток</a>
-            <a href="#stack">Стек</a>
-            <a href="#demo">Демо</a>
-        </nav>
-        <a class="btn ghost" href="#demo">Запуск локально</a>
-    </header>
-
-    <main>
-        <section class="hero">
-            <div class="hero-content reveal">
-                <p class="eyebrow">Распределенное обучение и блокчейн</p>
-                <h1>
-                    Обучайте модели на открытых GPU, а выплаты фиксируйте on-chain.
-                </h1>
-                <p class="lead">
-                    Parallel Funetun — прототип рынка, где заказчики финансируют
-                    обучение, владельцы GPU выполняют микрозадачи, а валидаторы
-                    подтверждают обновления. Контракт держит учет честным, а вычисления
-                    остаются off-chain.
-                </p>
-                <div class="hero-actions">
-                    <a class="btn primary" href="#flow">Смотреть поток</a>
-                    <a class="btn outline" href="#architecture">Компоненты</a>
-                </div>
-                <div class="hero-metrics">
-                    <div class="metric">
-                        <span class="metric-value">4</span>
-                        <span class="metric-label">Ключевые роли</span>
-                    </div>
-                    <div class="metric">
-                        <span class="metric-value">6</span>
-                        <span class="metric-label">On-chain события</span>
-                    </div>
-                    <div class="metric">
-                        <span class="metric-value">1</span>
-                        <span class="metric-label">Контур оркестрации</span>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-visual" aria-hidden="true">
-                <canvas id="mesh"></canvas>
-                <div class="panel panel-main">
-                    <div class="panel-label">Контракт JobManager</div>
-                    <div class="panel-row">
-                        <span>Депозитный эскроу</span>
-                        <span class="pill">активен</span>
-                    </div>
-                    <div class="panel-row">
-                        <span>Хэш обновления</span>
-                        <code>0x2c1...9a3</code>
-                    </div>
-                    <div class="panel-row">
-                        <span>Выплата</span>
-                        <span class="amount">0.35 ETH</span>
-                    </div>
-                </div>
-                <div class="panel panel-side">
-                    <div class="panel-label">Оркестратор</div>
-                    <ul>
-                        <li>Слушает события</li>
-                        <li>Дробит микрозадачи</li>
-                        <li>Агрегирует дельты</li>
-                    </ul>
-                </div>
-                <div class="panel panel-chip">
-                    <div class="panel-label">Delta от тренера</div>
-                    <div class="mini-grid">
-                        <span>loss: 0.48</span>
-                        <span>steps: 10</span>
-                        <span>shard: 0</span>
-                        <span>hash: ok</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="highlights reveal">
-            <div class="highlight">
-                <h3>Открытый рынок GPU</h3>
-                <p>
-                    Участники подключаются как тренеры и получают вознаграждение за
-                    проверенные обновления. Задания финансируются заранее и оплачиваются
-                    автоматически.
-                </p>
-            </div>
-            <div class="highlight">
-                <h3>Событийная оркестрация</h3>
-                <p>
-                    Оркестратор слушает события контракта и реагирует в реальном
-                    времени, выдавая микрозадачи и собирая дельты.
-                </p>
-            </div>
-            <div class="highlight">
-                <h3>Контроль качества</h3>
-                <p>
-                    Валидаторы проверяют апдейты до выплат. Хэши живут on-chain, а
-                    данные и веса остаются off-chain.
-                </p>
-            </div>
-        </section>
-
-        <section id="live" class="section live">
-            <div class="section-header reveal">
-                <p class="eyebrow">Живой статус</p>
-                <h2>Попытка получить реальные данные</h2>
-                <p>
-                    Если запущен локальный Hardhat-узел, блоки и chain id подхватятся
-                    автоматически. Иначе покажем статус "офлайн".
-                </p>
-            </div>
-            <div class="live-grid">
-                <div class="live-card reveal">
-                    <h3>Сеть</h3>
-                    <p class="live-value" id="live-chain">офлайн</p>
-                    <span class="live-meta">chain id</span>
-                </div>
-                <div class="live-card reveal">
-                    <h3>Последний блок</h3>
-                    <p class="live-value" id="live-block">—</p>
-                    <span class="live-meta">block number</span>
-                </div>
-                <div class="live-card reveal">
-                    <h3>Время блока</h3>
-                    <p class="live-value" id="live-time">—</p>
-                    <span class="live-meta">timestamp</span>
-                </div>
-                <div class="live-card reveal">
-                    <h3>Аккаунты</h3>
-                    <p class="live-value" id="live-accounts">—</p>
-                    <span class="live-meta">eth_accounts</span>
-                </div>
-            </div>
-            <div class="live-hint reveal" id="live-hint">
-                Запустите `npx hardhat node` на `localhost:8545`, чтобы увидеть
-                ончейн-метрики.
-            </div>
-        </section>
-
-        <section id="graph" class="section graph">
-          <div class="section-header reveal">
-            <p class="eyebrow">Граф взаимодействий</p>
-            <h2>Как сервисы общаются между собой</h2>
-            <p>
-              Оркестратор фиксирует вызовы тренеров и валидаторов, а фронт
-              отображает связи как живой граф.
-            </p>
+        <div class="hero-metrics">
+          <div class="metric">
+            <span class="metric-value">4</span>
+            <span class="metric-label">Key Roles</span>
           </div>
-          <div class="graph-shell">
-            <canvas id="graph-canvas" aria-label="Interaction graph"></canvas>
-            <div class="graph-panel">
-              <div class="graph-status" id="graph-status">ожидание данных</div>
-              <div class="graph-stats">
-                <div>
-                  <span>Узлы</span>
-                  <strong id="graph-nodes">0</strong>
-                </div>
-                <div>
-                  <span>Связи</span>
-                  <strong id="graph-edges">0</strong>
-                </div>
-              </div>
-              <div class="graph-legend">
-                <span class="legend-dot legend-orchestrator"></span>
-                <span>Оркестратор</span>
-                <span class="legend-dot legend-contract"></span>
-                <span>Контракт</span>
-                <span class="legend-dot legend-trainer"></span>
-                <span>Тренер</span>
-                <span class="legend-dot legend-validator"></span>
-                <span>Валидатор</span>
-              </div>
-              <div class="job-state" id="job-state">
-                <div class="job-stat">
-                  <span class="job-label">Epoch:</span>
-                  <span class="job-value">0 / 100</span>
-                </div>
-              </div>
-              <p class="graph-hint">
-                Simulation running - watch the graph evolve!
-              </p>
-            </div>
-            <div class="graph-tooltip" id="graph-tooltip"></div>
+          <div class="metric">
+            <span class="metric-value">6</span>
+            <span class="metric-label">On-chain Events</span>
           </div>
-        </section>
+          <div class="metric">
+            <span class="metric-value">∞</span>
+            <span class="metric-label">Scalable Workers</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <canvas id="mesh"></canvas>
+        <div class="panel panel-main">
+          <div class="panel-label">JobManager Contract</div>
+          <div class="panel-row">
+            <span>Deposit Escrow</span>
+            <span class="pill">active</span>
+          </div>
+          <div class="panel-row">
+            <span>Update Hash</span>
+            <code>0x2c1...9a3</code>
+          </div>
+          <div class="panel-row">
+            <span>Payout</span>
+            <span class="amount">0.35 ETH</span>
+          </div>
+        </div>
+        <div class="panel panel-side">
+          <div class="panel-label">Orchestrator</div>
+          <ul>
+            <li>Listens to events</li>
+            <li>Splits micro-tasks</li>
+            <li>Aggregates deltas</li>
+          </ul>
+        </div>
+        <div class="panel panel-chip">
+          <div class="panel-label">Trainer Delta</div>
+          <div class="mini-grid">
+            <span>loss: 0.48</span>
+            <span>steps: 10</span>
+            <span>shard: 0</span>
+            <span>hash: ok</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <section id="architecture" class="section">
-            <div class="section-header reveal">
-                <p class="eyebrow">Архитектура</p>
-                <h2>Четыре роли и один контур доверия</h2>
-                <p>
-                    Смарт-контракт, off-chain оркестрация и воркеры на PyTorch дают
-                    скорость обучения с прозрачными выплатами.
-                </p>
-            </div>
-            <div class="card-grid">
-                <article class="card reveal">
-                    <h3>Смарт-контракт JobManager</h3>
-                    <p>
-                        Управляет заданиями, депозитами, регистрацией и выплатами.
-                        Хранит только хэши, но каждая оплата фиксируется on-chain.
-                    </p>
-                </article>
-                <article class="card reveal">
-                    <h3>Сервис оркестратора</h3>
-                    <p>
-                        Назначает микрозадачи, вызывает валидаторов и публикует
-                        подтвержденные хэши. Оркестрация по событиям.
-                    </p>
-                </article>
-                <article class="card reveal">
-                    <h3>Клиент-тренер</h3>
-                    <p>
-                        Выполняет K локальных шагов на шарде, считает дельту и отправляет
-                        хэш для проверки и выплаты.
-                    </p>
-                </article>
-                <article class="card reveal">
-                    <h3>Клиент-валидатор</h3>
-                    <p>
-                        Повторяет обучение или делает spot-check, затем сигналит о
-                        валидности для выплат.
-                    </p>
-                </article>
-                <article class="card reveal">
-                    <h3>Стратегии агрегации</h3>
-                    <p>
-                        Усреднение, медиана или trimmed mean повышают устойчивость к
-                        шумным или вредоносным дельтам.
-                    </p>
-                </article>
-                <article class="card reveal">
-                    <h3>Учет стимулов</h3>
-                    <p>
-                        Депозит блокируется заранее, поэтому участники доверяют
-                        автоматической выплате после валидации.
-                    </p>
-                </article>
-            </div>
-        </section>
+    <section class="highlights">
+      <div class="highlight reveal">
+        <h3>Open GPU Market</h3>
+        <p>
+          Participants join as trainers and earn rewards for verified updates.
+          Jobs are pre-funded and payments are automatic upon validation.
+        </p>
+      </div>
+      <div class="highlight reveal">
+        <h3>Event-Driven Orchestration</h3>
+        <p>
+          The orchestrator listens to contract events and reacts in real-time,
+          assigning micro-tasks and collecting weight deltas.
+        </p>
+      </div>
+      <div class="highlight reveal">
+        <h3>Quality Control</h3>
+        <p>
+          Validators check updates before payouts. Hashes live on-chain while
+          actual data and weights remain private off-chain.
+        </p>
+      </div>
+    </section>
 
-        <section id="flow" class="section flow">
-            <div class="section-header reveal">
-                <p class="eyebrow">Жизненный цикл</p>
-                <h2>От задания до выплаты</h2>
-            </div>
-            <div class="flow-grid">
-                <div class="flow-step reveal">
-                    <span class="step-number">01</span>
-                    <h3>Заказчик создает задание</h3>
-                    <p>
-                        Депозит и базовая награда блокируются в контракте, гарантируя
-                        средства тренерам.
-                    </p>
-                </div>
-                <div class="flow-step reveal">
-                    <span class="step-number">02</span>
-                    <h3>Оркестратор дробит работу</h3>
-                    <p>
-                        Микрозадачи создаются с учетом класса GPU и требований модели,
-                        затем выдаются зарегистрированным тренерам.
-                    </p>
-                </div>
-                <div class="flow-step reveal">
-                    <span class="step-number">03</span>
-                    <h3>Тренеры считают дельты</h3>
-                    <p>
-                        Каждый воркер выполняет локальные шаги, хэширует дельту и
-                        отправляет обновление off-chain плюс хэш on-chain.
-                    </p>
-                </div>
-                <div class="flow-step reveal">
-                    <span class="step-number">04</span>
-                    <h3>Валидаторы подтверждают качество</h3>
-                    <p>
-                        Spot-check или повторное обучение проверяют апдейты перед
-                        сигналом контракту.
-                    </p>
-                </div>
-                <div class="flow-step reveal">
-                    <span class="step-number">05</span>
-                    <h3>Контракт выпускает награды</h3>
-                    <p>
-                        Проверенные обновления запускают автоматические выплаты с
-                        прозрачным треком.
-                    </p>
-                </div>
-            </div>
-        </section>
+    <section id="live" class="section live">
+      <div class="section-header reveal">
+        <span class="eyebrow">Live Status</span>
+        <h2>Real-time Blockchain Data</h2>
+        <p>
+          Connected to local Hardhat node. Block numbers and chain ID update automatically.
+          Start a local node to see live metrics.
+        </p>
+      </div>
+      <div class="live-grid">
+        <div class="live-card reveal">
+          <h3>Network</h3>
+          <p class="live-value" id="live-chain">offline</p>
+          <span class="live-meta">chain id</span>
+        </div>
+        <div class="live-card reveal">
+          <h3>Latest Block</h3>
+          <p class="live-value" id="live-block">—</p>
+          <span class="live-meta">block number</span>
+        </div>
+        <div class="live-card reveal">
+          <h3>Block Time</h3>
+          <p class="live-value" id="live-time">—</p>
+          <span class="live-meta">timestamp</span>
+        </div>
+        <div class="live-card reveal">
+          <h3>Accounts</h3>
+          <p class="live-value" id="live-accounts">—</p>
+          <span class="live-meta">eth_accounts</span>
+        </div>
+      </div>
+      <div class="live-hint reveal" id="live-hint">
+        Run `npx hardhat node` on localhost:8545 to see live blockchain metrics.
+      </div>
+    </section>
 
-        <section class="section assurance">
-            <div class="section-header reveal">
-                <p class="eyebrow">Контур доверия</p>
-                <h2>Надежность без потери скорости</h2>
-            </div>
-            <div class="assurance-grid">
-                <div class="assurance-card reveal">
-                    <h3>Учет по хэшам</h3>
-                    <p>
-                        On-chain хранятся хэши и результаты валидации, а данные остаются
-                        приватными.
-                    </p>
-                </div>
-                <div class="assurance-card reveal">
-                    <h3>Шлюз валидаторов</h3>
-                    <p>
-                        Выплаты проходят только после проверки, снижая влияние
-                        вредоносных апдейтов.
-                    </p>
-                </div>
-                <div class="assurance-card reveal">
-                    <h3>Трек событий</h3>
-                    <p>
-                        Каждое создание задания, апдейт и выплата порождают событие для
-                        аудита и аналитики.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section id="stack" class="section stack">
-            <div class="section-header reveal">
-                <p class="eyebrow">Технологии</p>
-                <h2>Стек для блокчейна и вычислений</h2>
-            </div>
-            <div class="stack-grid">
-                <div class="stack-card reveal">
-                    <h3>Смарт-контракт</h3>
-                    <p>Solidity 0.8.x и Hardhat для деплоя и тестов.</p>
-                </div>
-                <div class="stack-card reveal">
-                    <h3>Координатор</h3>
-                    <p>Python, web3.py, FastAPI и оркестрация по событиям.</p>
-                </div>
-                <div class="stack-card reveal">
-                    <h3>Тренировочные воркеры</h3>
-                    <p>Тренеры и валидаторы на PyTorch, выполняющие микрозадачи.</p>
-                </div>
-                <div class="stack-card reveal">
-                    <h3>Слой данных</h3>
-                    <p>Off-chain чекпойнты и хэши апдейтов on-chain.</p>
-                </div>
-            </div>
-            <div class="pill-row reveal">
-                <span>Solidity</span>
-                <span>Hardhat</span>
-                <span>Python</span>
-                <span>web3.py</span>
-                <span>FastAPI</span>
-                <span>PyTorch</span>
-                <span>MNIST</span>
-            </div>
-        </section>
-
-        <section class="section roadmap">
-            <div class="section-header reveal">
-                <p class="eyebrow">Дальше</p>
-                <h2>Идеи следующего этапа</h2>
-            </div>
-            <div class="roadmap-grid">
-                <div class="roadmap-item reveal">
-                    <h3>Токенизация стимулов</h3>
-                    <p>ERC-20 выплаты и доли владения моделью.</p>
-                </div>
-                <div class="roadmap-item reveal">
-                    <h3>DAO управление</h3>
-                    <p>Голосование за правила валидации и награды.</p>
-                </div>
-                <div class="roadmap-item reveal">
-                    <h3>Хранение в IPFS</h3>
-                    <p>Децентрализованные датасеты и чекпойнты.</p>
-                </div>
-                <div class="roadmap-item reveal">
-                    <h3>ZK доказательства</h3>
-                    <p>Проверка корректности без раскрытия данных.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="demo" class="section demo">
-            <div class="section-header reveal">
-                <p class="eyebrow">Локальная демонстрация</p>
-                <h2>Запуск прототипа на локальной сети</h2>
-                <p>
-                    Поднимите локальный Hardhat-узел, задеплойте контракт, затем
-                    запустите оркестратор и тренера.
-                </p>
-            </div>
-            <div class="demo-grid">
-                <div class="demo-card reveal">
-                    <h3>Контракт</h3>
-                    <pre><code>npx hardhat compile
-                        npx hardhat run scripts/deploy.js --network localhost
-                    </code></pre>
-                </div>
-                <div class="demo-card reveal">
-                    <h3>Оркестратор</h3>
-                    <pre><code>pip install -r requirements.txt
-                        uvicorn orchestrator.orchestrator:app --reload
-                    </code></pre>
-                </div>
-                <div class="demo-card reveal">
-                    <h3>Тренер</h3>
-                    <pre><code>python trainer/trainer.py \
-                      --registry http://localhost:8000 \
-                      --job 0 --trainer 0xYOUR_ADDR
-                    </code></pre>
-                </div>
-            </div>
-        </section>
-
-        <section class="cta-section reveal">
+    <section id="graph" class="section graph">
+      <div class="section-header reveal">
+        <span class="eyebrow">Interaction Graph</span>
+        <h2>Watch Services Communicate</h2>
+        <p>
+          The orchestrator tracks trainer and validator calls in real-time.
+          The graph visualizes connections between all system components.
+        </p>
+      </div>
+      <div class="graph-shell reveal">
+        <canvas id="graph-canvas" aria-label="Interaction graph"></canvas>
+        <div class="graph-panel">
+          <div class="graph-status" id="graph-status">connecting...</div>
+          <div class="graph-stats">
             <div>
-                <h2>Готовы показывать возможности проекта?</h2>
-                <p>
-                    Эта страница объясняет систему инвесторам, контрибьюторам и
-                    техническим экспертам.
-                </p>
+              <span>Nodes</span>
+              <strong id="graph-nodes">0</strong>
             </div>
-            <a class="btn primary" href="#top">Наверх</a>
-        </section>
-    </main>
+            <div>
+              <span>Edges</span>
+              <strong id="graph-edges">0</strong>
+            </div>
+          </div>
+          <div class="graph-legend">
+            <span class="legend-dot legend-orchestrator"></span>
+            <span>Orchestrator</span>
+            <span class="legend-dot legend-contract"></span>
+            <span>Contract</span>
+            <span class="legend-dot legend-trainer"></span>
+            <span>Trainer</span>
+            <span class="legend-dot legend-validator"></span>
+            <span>Validator</span>
+          </div>
+          <div class="job-state" id="job-state">
+            <div class="job-stat">
+              <span class="job-label">Epoch</span>
+              <span class="job-value">0 / 100</span>
+            </div>
+          </div>
+          <p class="graph-hint">
+            Simulation running — watch the graph evolve!
+          </p>
+        </div>
+        <div class="graph-tooltip" id="graph-tooltip"></div>
+      </div>
+    </section>
 
-    <footer class="footer">
-        <div>
-            <strong>Parallel Funetun</strong>
-            <p>Распределенное обучение и блокчейн</p>
+    <section id="architecture" class="section">
+      <div class="section-header reveal">
+        <span class="eyebrow">Architecture</span>
+        <h2>Four Roles, One Trust Loop</h2>
+        <p>
+          Smart contracts, off-chain orchestration, and PyTorch workers deliver
+          training speed with transparent payments.
+        </p>
+      </div>
+      <div class="card-grid">
+        <article class="card reveal">
+          <h3>JobManager Contract</h3>
+          <p>
+            Manages jobs, deposits, registration, and payouts. Stores only hashes
+            but every payment is recorded on-chain.
+          </p>
+        </article>
+        <article class="card reveal">
+          <h3>Orchestrator Service</h3>
+          <p>
+            Assigns micro-tasks, calls validators, and publishes confirmed hashes.
+            Event-driven orchestration for real-time response.
+          </p>
+        </article>
+        <article class="card reveal">
+          <h3>Trainer Client</h3>
+          <p>
+            Executes K local steps on a data shard, computes delta, and sends
+            hash for verification and payment.
+          </p>
+        </article>
+        <article class="card reveal">
+          <h3>Validator Client</h3>
+          <p>
+            Repeats training or performs spot-checks, then signals validity
+            for payout approval.
+          </p>
+        </article>
+        <article class="card reveal">
+          <h3>Aggregation Strategies</h3>
+          <p>
+            Averaging, median, or trimmed mean increase robustness against
+            noisy or malicious deltas.
+          </p>
+        </article>
+        <article class="card reveal">
+          <h3>Incentive Accounting</h3>
+          <p>
+            Deposits are locked upfront, so participants trust automatic
+            payouts after validation.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="flow" class="section flow">
+      <div class="section-header reveal">
+        <span class="eyebrow">Lifecycle</span>
+        <h2>From Job to Payout</h2>
+      </div>
+      <div class="flow-grid">
+        <div class="flow-step reveal">
+          <span class="step-number">01</span>
+          <h3>Client Creates Job</h3>
+          <p>Deposit and base reward are locked in the contract, guaranteeing funds for trainers.</p>
         </div>
-        <div class="footer-links">
-          <a href="#live">Живые данные</a>
-          <a href="#graph">Граф</a>
-          <a href="#architecture">Архитектура</a>
-            <a href="#flow">Поток</a>
-            <a href="#stack">Стек</a>
-            <a href="#demo">Демо</a>
+        <div class="flow-step reveal">
+          <span class="step-number">02</span>
+          <h3>Orchestrator Splits Work</h3>
+          <p>Micro-tasks are created based on GPU class and model requirements, then assigned to registered trainers.</p>
         </div>
-    </footer>
+        <div class="flow-step reveal">
+          <span class="step-number">03</span>
+          <h3>Trainers Compute Deltas</h3>
+          <p>Each worker executes local steps, hashes the delta, and sends the update off-chain plus hash on-chain.</p>
+        </div>
+        <div class="flow-step reveal">
+          <span class="step-number">04</span>
+          <h3>Validators Confirm</h3>
+          <p>Spot-check or repeated training verifies updates before signaling the contract.</p>
+        </div>
+        <div class="flow-step reveal">
+          <span class="step-number">05</span>
+          <h3>Contract Releases Rewards</h3>
+          <p>Verified updates trigger automatic payouts with transparent tracking.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section assurance">
+      <div class="section-header reveal">
+        <span class="eyebrow">Trust Loop</span>
+        <h2>Reliability Without Sacrificing Speed</h2>
+      </div>
+      <div class="assurance-grid">
+        <div class="assurance-card reveal">
+          <h3>Hash-Based Accounting</h3>
+          <p>On-chain stores hashes and validation results while data remains private.</p>
+        </div>
+        <div class="assurance-card reveal">
+          <h3>Validator Gateway</h3>
+          <p>Payouts only proceed after verification, reducing impact of malicious updates.</p>
+        </div>
+        <div class="assurance-card reveal">
+          <h3>Event Trail</h3>
+          <p>Every job creation, update, and payout emits an event for audit and analytics.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="stack" class="section stack">
+      <div class="section-header reveal">
+        <span class="eyebrow">Technologies</span>
+        <h2>Blockchain & Compute Stack</h2>
+      </div>
+      <div class="stack-grid">
+        <div class="stack-card reveal">
+          <h3>Smart Contract</h3>
+          <p>Solidity 0.8.x with Hardhat for deployment and testing.</p>
+        </div>
+        <div class="stack-card reveal">
+          <h3>Coordinator</h3>
+          <p>Python, web3.py, FastAPI with event-driven orchestration.</p>
+        </div>
+        <div class="stack-card reveal">
+          <h3>Training Workers</h3>
+          <p>PyTorch trainers and validators executing micro-tasks.</p>
+        </div>
+        <div class="stack-card reveal">
+          <h3>Data Layer</h3>
+          <p>Off-chain checkpoints with update hashes on-chain.</p>
+        </div>
+      </div>
+      <div class="pill-row reveal">
+        <span>Solidity</span>
+        <span>Hardhat</span>
+        <span>Python</span>
+        <span>web3.py</span>
+        <span>FastAPI</span>
+        <span>PyTorch</span>
+        <span>MNIST</span>
+      </div>
+    </section>
+
+    <section class="section roadmap">
+      <div class="section-header reveal">
+        <span class="eyebrow">Next Steps</span>
+        <h2>Future Development Ideas</h2>
+      </div>
+      <div class="roadmap-grid">
+        <div class="roadmap-item reveal">
+          <h3>Token Incentives</h3>
+          <p>ERC-20 payouts and model ownership shares.</p>
+        </div>
+        <div class="roadmap-item reveal">
+          <h3>DAO Governance</h3>
+          <p>Voting on validation rules and reward distribution.</p>
+        </div>
+        <div class="roadmap-item reveal">
+          <h3>IPFS Storage</h3>
+          <p>Decentralized datasets and checkpoints.</p>
+        </div>
+        <div class="roadmap-item reveal">
+          <h3>ZK Proofs</h3>
+          <p>Verify correctness without revealing data.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="demo" class="section demo">
+      <div class="section-header reveal">
+        <span class="eyebrow">Local Demo</span>
+        <h2>Run the Prototype Locally</h2>
+        <p>
+          Start a local Hardhat node, deploy the contract, then run the orchestrator and trainers.
+        </p>
+      </div>
+      <div class="demo-grid">
+        <div class="demo-card reveal">
+          <h3>Contract</h3>
+          <pre><code>npx hardhat compile
+npx hardhat run scripts/deploy.js \
+  --network localhost</code></pre>
+        </div>
+        <div class="demo-card reveal">
+          <h3>Orchestrator</h3>
+          <pre><code>pip install -r requirements.txt
+uvicorn orchestrator.orchestrator:app \
+  --reload --port 8000</code></pre>
+        </div>
+        <div class="demo-card reveal">
+          <h3>Trainer</h3>
+          <pre><code>python trainer/trainer.py \
+  --registry http://localhost:8000 \
+  --job 0 --trainer 0xYOUR_ADDR</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="section whitepaper-promo">
+      <div class="whitepaper-card reveal">
+        <div class="whitepaper-card-content">
+          <span class="eyebrow">Technical Documentation</span>
+          <h2>📄 Whitepaper</h2>
+          <p>
+            Detailed technical specification including mathematical models, 
+            economic incentives, smart contract architecture, and security analysis.
+          </p>
+          <ul class="whitepaper-features">
+            <li>Formal definitions and notation</li>
+            <li>SGD update formulas & aggregation strategies</li>
+            <li>JobManager contract specification</li>
+            <li>Security threat model</li>
+            <li>Future roadmap</li>
+          </ul>
+          <a class="btn primary" href="whitepaper.html">Read Full Whitepaper</a>
+        </div>
+        <div class="whitepaper-card-visual">
+          <div class="doc-preview">
+            <div class="doc-line"></div>
+            <div class="doc-line short"></div>
+            <div class="doc-line"></div>
+            <div class="doc-line medium"></div>
+            <div class="doc-formula">$\theta^{(t+1)} = \theta^{(t)} + \Delta^{(t)}$</div>
+            <div class="doc-line"></div>
+            <div class="doc-line short"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section reveal">
+      <div>
+        <h2>Ready to showcase the project?</h2>
+        <p>
+          This page explains the system to investors, contributors, and technical experts.
+        </p>
+      </div>
+      <a class="btn primary" href="#top">Back to Top</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>
+      <strong>Parallel Funetun</strong>
+      <p>Distributed Training & Blockchain</p>
+    </div>
+    <div class="footer-links">
+      <a href="#live">Live Data</a>
+      <a href="#graph">Graph</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#flow">Flow</a>
+      <a href="whitepaper.html">Whitepaper</a>
+    </div>
+  </footer>
 </div>
 
 <script src="app.js"></script>
